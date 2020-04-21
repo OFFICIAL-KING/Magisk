@@ -167,7 +167,7 @@ recovery_cleanup() {
 # find_block [partname...]
 find_block() {
   for BLOCK in "$@"; do
-    DEVICE=`find /dev \( -type b -o -type c -o -type l \) -iname $BLOCK | head -n 1` 2>/dev/null
+    DEVICE=`find /dev \( -type b -o -type c -o -type l \) -iname $BLOCK | grep -v log | head -n 1` 2>/dev/null
     if [ ! -z $DEVICE ]; then
       readlink -f $DEVICE
       return 0
